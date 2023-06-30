@@ -13,7 +13,8 @@ import java.util.List;
  *
  * @author luis.delcampo
  */
-@FeignClient(value="marvelapicaller", url = "${client.service.marvelapicaller.location}"  )
+@FeignClient(value="${client.service.marvelapicaller.identifier}",
+        url = "${client.service.marvelapicaller.location}"  )
 public interface MarvelApiFeignClient {
 
     /**
