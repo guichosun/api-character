@@ -24,6 +24,9 @@ public class ProcessCharacterServiceImpl implements
 
     private final MarvelApiFeignClient marvelFeignClient;
 
+    /**
+     * @see ProcessCharacterService#getAllCharacter()
+     */
     @Override
     public List<CharacterResponse> getAllCharacter() {
 
@@ -39,6 +42,23 @@ public class ProcessCharacterServiceImpl implements
         return characters;
     }
 
+    /**
+     * @see ProcessCharacterService#getCharacterById(String)
+     */
+    @Override
+    public Optional<CharacterResponse> getCharacterById(String id) {
+
+        log.info("Return a Character");
+
+        // Call marvel-api-caller service
+        CharacterResponse characterRes = marvelFeignClient.getCharacterById(id);
+
+        // Record the resource
+        recordHistoric("wr56Characters-By-id");
+
+        return Optional.of(characterRes);
+    }
+
     private void recordHistoric(String resource) {
         log.info("Going to save a record");
 
@@ -48,9 +68,5 @@ public class ProcessCharacterServiceImpl implements
 
         historicFeignClient.saveRecord(body);
 
-    }
-    @Override
-    public Optional<CharacterResponse> getCharacterById(Long id) {
-        return Optional.empty();
     }
 }

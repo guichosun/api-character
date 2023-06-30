@@ -19,7 +19,7 @@ public interface ProcessCharacterService {
      *
      * @return The unique {@link CharacterResponse} for the id
      */
-    Optional<CharacterResponse> getCharacterById(Long id);
+    Optional<CharacterResponse> getCharacterById(String id);
 
     /**
      * Perform a call to Get characters

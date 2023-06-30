@@ -17,6 +17,7 @@ import java.util.List;
 @Slf4j
 @AllArgsConstructor
 @RestController
+@CrossOrigin(origins = { "http://localhost:4200" })
 @RequestMapping(value = "${api.base}",
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE)
@@ -47,7 +48,7 @@ public class CharacterController {
         log.info("The character id {}", id);
 
         // Get a Character
-        CharacterResponse character = service.getCharacterById(Long.valueOf(id)).get();
+        CharacterResponse character = service.getCharacterById(id).get();
         return ResponseEntity.ok(character);
     }
 
